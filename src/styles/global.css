@@ -4,18 +4,21 @@
    --pop   : orange voile de yole, couleur d'action (< 10 % de surface)
    ========================================================== */
 :root {
-  --blue: #009ce3;
-  --blue-ink: #006ea3;      /* bleu lisible en texte sur fond clair (AA) */
-  --night: #061a2e;         /* secondaire sombre, texte blanc */
-  --ink: #0a1a2b;
-  --bg: #f5f9fc;
-  --pop: #ff5b1f;           /* orange voile : CTA + 1 ou 2 accents */
+  --blue: #01afec;          /* bleu vif charte */
+  --blue-ink: #1e2778;      /* bleu foncé charte, lisible sur fond clair */
+  --night: #1e2778;         /* bleu foncé charte : en-tête, sections sombres */
+  --night-deep: #141a55;    /* variante plus profonde pour les cartes */
+  --ink: #1a1a1a;           /* noir charte */
+  --bg: #edebe9;            /* gris clair charte */
+  --grey: #736e6d;          /* gris foncé charte (texte secondaire sur blanc) */
+  --pop: #ff6a00;           /* orange voile, plus franc : CTA (texte noir 6:1) */
   --lagoon: #00b3a7;        /* secondaire : logistique */
   --sun: #ffc23d;           /* secondaire : recrutement */
-  --line: rgba(10, 26, 43, .12);
+  --line: rgba(26, 26, 26, .12);
 
   --f-display: 'Bricolage Grotesque Variable', 'Arial Black', sans-serif;
-  --f-text: 'Figtree Variable', system-ui, sans-serif;
+  --f-sub: 'Comfortaa', 'Bricolage Grotesque Variable', sans-serif;  /* sous-titres charte */
+  --f-text: 'Helvetica Neue', Helvetica, Arial, sans-serif;        /* texte charte */
   --f-hand: 'Caveat', cursive;
 
   --r: 20px;
@@ -34,7 +37,8 @@ body {
 }
 img, video, svg { display: block; max-width: 100%; }
 a { color: inherit; }
-h1, h2, h3 { font-family: var(--f-display); line-height: 1; margin: 0; letter-spacing: -.02em; }
+h1, h2 { font-family: var(--f-display); line-height: 1; margin: 0; letter-spacing: -.02em; }
+h3 { font-family: var(--f-sub); font-weight: 700; line-height: 1.1; margin: 0; letter-spacing: -.01em; }
 p { margin: 0; }
 :focus-visible { outline: 3px solid var(--pop); outline-offset: 3px; border-radius: 6px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -49,7 +53,8 @@ p { margin: 0; }
   will-change: transform;
 }
 .btn--pop { background: var(--pop); color: var(--ink); }            /* aplat, jamais de dégradé */
-.btn--pop:hover { background: #ff7442; }
+.btn--pop { font-weight: 800; }
+.btn--pop:hover { background: #ff8326; }
 .btn--ghost { border-color: currentColor; color: #fff; background: transparent; }
 .btn--ghost:hover { background: #fff; color: var(--ink); }
 .btn--dark { border-color: var(--ink); color: var(--ink); }

@@ -134,7 +134,7 @@ function run() {
   $$('[data-words]').forEach((el) => {
     const s = new SplitType(el, { types: 'words' });
     s.words.forEach((w) => w.classList.add('w'));
-    gsap.to(s.words, { color: '#0a1a2b', stagger: .08, ease: 'none', scrollTrigger: { trigger: el, start: 'top 75%', end: 'bottom 45%', scrub: true } });
+    gsap.to(s.words, { color: '#1a1a1a', stagger: .08, ease: 'none', scrollTrigger: { trigger: el, start: 'top 75%', end: 'bottom 45%', scrub: true } });
   });
   gsap.from('.manif__motto span', { xPercent: -30, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: .15, scrollTrigger: { trigger: '.manif', start: 'top 70%' } });
   gsap.fromTo('.manif__motto .pop', { backgroundSize: '0% 100%' }, { backgroundSize: '100% 100%', ease: 'none', scrollTrigger: { trigger: '.manif', start: 'top 60%', end: 'top 20%', scrub: true } });
@@ -143,6 +143,19 @@ function run() {
     if (el.closest('.hero')) return;
     gsap.from(el, { y: 40, opacity: 0, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } });
   });
+
+  /* ---------- Équipage : la vidéo s'ouvre en plein écran, la signature s'écrit ligne à ligne ---------- */
+  const crewVid = $('[data-crew-video]');
+  new IntersectionObserver(([e]) => {
+    if (e.isIntersecting) { crewVid.preload = 'auto'; crewVid.play().catch(() => {}); } else crewVid.pause();
+  }, { rootMargin: '200px' }).observe(crewVid);
+  gsap.timeline({
+    scrollTrigger: { trigger: '[data-crew]', start: 'top top', end: '+=220%', pin: true, scrub: 1, anticipatePin: 1 },
+  })
+    .fromTo('[data-crew-frame]', { clipPath: 'inset(16% 20% round 32px)' }, { clipPath: 'inset(0% 0% round 0px)', ease: 'power2.inOut', duration: 1 })
+    .fromTo('.crew__video', { scale: 1.25 }, { scale: 1, ease: 'none', duration: 1 }, 0)
+    .from('[data-crew-line]', { yPercent: 60, opacity: 0, filter: 'blur(12px)', stagger: .5, duration: .6, ease: 'power3.out' }, .6)
+    .to({}, { duration: .5 });
 
   /* ---------- Pôles : scroll horizontal + skew selon la vitesse + révélation des images ---------- */
   const mm = gsap.matchMedia();

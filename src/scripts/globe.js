@@ -32,7 +32,7 @@ export async function initGlobe({ canvasWrap, territoires, gsap, onPick }) {
   // Sphère pleine (océan) bleu nuit
   globe.add(new THREE.Mesh(
     new THREE.SphereGeometry(.995, 64, 64),
-    new THREE.MeshBasicMaterial({ color: 0x0a2a4a, transparent: true, opacity: .92 }),
+    new THREE.MeshBasicMaterial({ color: 0x161d5c, transparent: true, opacity: .92 }),
   ));
 
   // Terres : points chargés à la demande
@@ -51,7 +51,7 @@ export async function initGlobe({ canvasWrap, territoires, gsap, onPick }) {
     new THREE.SphereGeometry(1.12, 64, 64),
     new THREE.ShaderMaterial({
       transparent: true, side: THREE.BackSide, depthWrite: false, blending: THREE.AdditiveBlending,
-      uniforms: { c: { value: new THREE.Color(0x009ce3) } },
+      uniforms: { c: { value: new THREE.Color(0x01afec) } },
       vertexShader: 'varying vec3 n; void main(){ n = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }',
       fragmentShader: 'uniform vec3 c; varying vec3 n; void main(){ float i = pow(.72 - dot(n, vec3(0,0,1.)), 3.); gl_FragColor = vec4(c, 1.) * i * .85; }',
     }),
@@ -59,7 +59,7 @@ export async function initGlobe({ canvasWrap, territoires, gsap, onPick }) {
   scene.add(atmo);
 
   // Repères + arcs
-  const POP = new THREE.Color(0xff5b1f), WHITE = new THREE.Color(0xffffff);
+  const POP = new THREE.Color(0xff6a00), WHITE = new THREE.Color(0xffffff);
   const siege = territoires.find((t) => t.siege);
   const pins = {}, arcs = {};
   territoires.forEach((t) => {

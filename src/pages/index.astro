@@ -108,6 +108,22 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
       </div>
     </section>
 
+    <!-- ================= ÉQUIPAGE : vidéo plein écran épinglée, signature de marque ================= -->
+    <section class="crew" data-crew aria-label="Signature du groupe">
+      <div class="crew__frame" data-crew-frame>
+        <video class="crew__video" muted loop playsinline preload="none" poster="img/crew-poster.webp" aria-hidden="true" data-crew-video>
+          <source src="video/equipage.mp4" type="video/mp4" />
+        </video>
+        <div class="crew__shade"></div>
+      </div>
+      <div class="crew__lines wrap">
+        <p data-crew-line>Des territoires.</p>
+        <p data-crew-line>Des magasins.</p>
+        <p data-crew-line>Des clients.</p>
+        <p data-crew-line class="crew__last"><span>Un même engagement.</span></p>
+      </div>
+    </section>
+
     <!-- ================= 3 PÔLES (scroll horizontal épinglé) ================= -->
     <section class="poles" id="activites" data-poles>
       <div class="poles__head wrap">
@@ -279,8 +295,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   .hd__nav a::after { content: ''; position: absolute; left: 50%; right: 50%; bottom: 0; height: 2px; background: var(--pop); transition: left .35s var(--ease), right .35s var(--ease); }
   .hd__nav a:hover::after { left: 0; right: 0; }
   .hd__cta { --h: 46px; }
-  .hd.is-solid .hd__nav a, .hd.is-open .hd__nav a { color: var(--night); }
-  .hd.is-solid { background: var(--blue); box-shadow: 0 10px 30px -18px rgba(6, 26, 46, .6); }
+  .hd.is-solid { background: var(--night); box-shadow: 0 10px 30px -18px rgba(20, 26, 85, .6); }
   .hd.is-solid .hd__in { height: 68px; }
   .hd.is-solid .hd__logo img { width: 112px; }
   .hd.is-hidden { transform: translateY(-100%); }
@@ -291,7 +306,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   .hero { position: relative; min-height: 100svh; display: grid; align-items: end; color: #fff; overflow: hidden; background: var(--night); }
   .hero__media { position: absolute; inset: 0; }
   .hero__video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
-  .hero__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,26,46,.55), rgba(6,26,46,0) 60%), linear-gradient(180deg, rgba(6,26,46,.45) 0%, rgba(6,26,46,0) 30%, rgba(6,26,46,.25) 55%, rgba(6,26,46,.85) 100%); }
+  .hero__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(20,26,85,.55), rgba(20,26,85,0) 60%), linear-gradient(180deg, rgba(20,26,85,.45) 0%, rgba(20,26,85,0) 30%, rgba(20,26,85,.25) 55%, rgba(20,26,85,.85) 100%); }
   .hero__content { position: relative; padding-bottom: clamp(80px, 12vh, 130px); padding-top: 110px; }
   .hero__title { font-size: clamp(40px, 6.4vw, 98px); font-weight: 750; max-width: 15ch; }
   .hero__title .line { overflow: hidden; padding-bottom: .06em; }
@@ -302,13 +317,13 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   @keyframes wheel { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
 
   /* ---------- CHIFFRES ---------- */
-  .stats { background: var(--blue); color: #fff; padding: 46px 0; }
+  .stats { background: var(--blue); color: var(--night); padding: 46px 0; }
   .stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-  .stat { position: relative; border-left: 2px solid rgba(255,255,255,.35); padding-left: 20px; }
+  .stat { position: relative; border-left: 2px solid rgba(30,39,120,.3); padding-left: 20px; }
   .stat strong { display: block; font: 800 clamp(40px, 5vw, 72px)/1 var(--f-display); font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
   .stat span { font-weight: 650; color: var(--night); }  /* texte courant sombre sur bleu : AA */
-  .stat--hand strong { color: #fff; }
-  .hand--stat { right: -6px; top: -34px; color: #fff; }
+  .stat--hand strong { color: var(--night); }
+  .hand--stat { right: -6px; top: -34px; color: var(--night); }
 
   /* ---------- MANIFESTE ---------- */
   .manif { padding: clamp(90px, 14vw, 180px) 0; }
@@ -316,8 +331,17 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   .manif__motto { font-size: clamp(64px, 10vw, 170px); font-weight: 800; color: var(--blue-ink); display: grid; position: sticky; top: 110px; }
   .manif__motto .pop { color: var(--ink); background: linear-gradient(transparent 62%, var(--pop) 62% 88%, transparent 88%) no-repeat 0 0 / 100% 100%; width: fit-content; }
   .manif__big { font: 600 clamp(24px, 2.6vw, 38px)/1.25 var(--f-display); letter-spacing: -.01em; }
-  .manif__big .w { color: rgba(10,26,43,.16); transition: color .2s; }
-  .manif__small { margin: 32px 0; max-width: 56ch; color: #34475a; }
+  .manif__big .w { color: rgba(26,26,26,.16); transition: color .2s; }
+  .manif__small { margin: 32px 0; max-width: 56ch; color: var(--ink); }
+
+  /* ---------- ÉQUIPAGE ---------- */
+  .crew { position: relative; height: 100vh; overflow: hidden; background: var(--bg); display: grid; place-items: center; }
+  .crew__frame { position: absolute; inset: 0; clip-path: inset(0 round 0); }
+  .crew__video { width: 100%; height: 100%; object-fit: cover; }
+  .crew__shade { position: absolute; inset: 0; background: radial-gradient(70% 70% at 50% 50%, rgba(20,26,85,.15), rgba(20,26,85,.65)); }
+  .crew__lines { position: relative; text-align: center; color: #fff; display: grid; gap: .1em; }
+  .crew__lines p { font: 800 clamp(40px, 7vw, 116px)/1.02 var(--f-display); letter-spacing: -.03em; text-shadow: 0 4px 40px rgba(20,26,85,.45); }
+  .crew__last span { background: var(--pop); color: var(--ink); padding: 0 .18em; border-radius: .12em; text-shadow: none; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 
   /* ---------- PÔLES ---------- */
   .poles { background: var(--night); color: #fff; padding: clamp(70px, 8vh, 110px) 0 0; overflow: hidden; }
@@ -325,7 +349,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   .poles__head h2 { font-size: clamp(40px, 4.6vw, 68px); }
   .poles__head p { color: rgba(255,255,255,.78); max-width: 46ch; }
   .poles__track { display: flex; gap: 32px; padding: 0 var(--pad) clamp(80px, 10vw, 130px); width: max-content; }
-  .pole { width: min(78vw, 1040px); display: grid; grid-template-columns: .9fr 1fr; gap: 0; background: #0c2742; border-radius: 28px; overflow: hidden; flex: none; }
+  .pole { width: min(78vw, 1040px); display: grid; grid-template-columns: .9fr 1fr; gap: 0; background: var(--night-deep); border-radius: 28px; overflow: hidden; flex: none; }
   .pole { height: clamp(420px, 60vh, 620px); }
   .pole__img { overflow: hidden; height: 100%; }
   .pole__img img { width: 100%; height: 115%; object-fit: cover; }
@@ -339,7 +363,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   /* ---------- CARTE ---------- */
   .map { position: relative; background: var(--night); color: #fff; padding: clamp(80px, 10vh, 120px) 0; min-height: 100vh; display: flex; align-items: center; overflow: hidden; isolation: isolate; }
   .map__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .35; z-index: -2; }
-  .map::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(80% 70% at 30% 40%, rgba(0,156,227,.55), rgba(6,26,46,.92) 70%); }
+  .map::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(80% 70% at 30% 40%, rgba(1,175,236,.5), rgba(20,26,85,.94) 70%); }
   .map__grid { display: grid; grid-template-columns: .85fr 1.5fr; gap: 50px; align-items: center; }
   .map__intro h2 { font-size: clamp(38px, 4.6vw, 68px); margin-bottom: 18px; }
   .map__intro p { color: rgba(255,255,255,.85); }
@@ -356,15 +380,15 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   .map__dot { fill: #fff; transition: fill .3s; }
   .map__halo { fill: rgba(255,255,255,.12); transform-origin: center; transform-box: fill-box; }
   .map__pin.is-on .map__dot { fill: var(--pop); }
-  .map__pin.is-on .map__halo { fill: rgba(255,91,31,.3); animation: ping 1.8s var(--ease) infinite; }
+  .map__pin.is-on .map__halo { fill: rgba(255,106,0,.3); animation: ping 1.8s var(--ease) infinite; }
   @keyframes ping { 0% { transform: scale(.6); opacity: 1; } 100% { transform: scale(2.2); opacity: 0; } }
-  .map__name { fill: #fff; font: 700 24px var(--f-text); paint-order: stroke; stroke: rgba(6,26,46,.75); stroke-width: 6px; }
+  .map__name { fill: #fff; font: 700 24px var(--f-text); paint-order: stroke; stroke: rgba(20,26,85,.75); stroke-width: 6px; }
   /* Verre : uniquement ici, sur la donnée vivante du territoire */
   .map__card { margin-top: 28px; padding: 24px 26px; border-radius: 22px;
     background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35);
     -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
     box-shadow: 0 30px 60px -30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.4); }
-  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .map__card { background: rgba(6,26,46,.92); } }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .map__card { background: rgba(20,26,85,.92); } }
   .map__card h3 { font-size: 30px; display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
   .badge { font: 700 12px var(--f-text); background: var(--pop); color: var(--ink); padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: .06em; }
   .map__block { margin-top: 12px; }
@@ -381,9 +405,9 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   .eng__title { font-size: clamp(40px, 5.4vw, 80px); margin-bottom: 50px; }
   .eng__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .eng__card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 34px; transition: transform .45s var(--ease), box-shadow .45s var(--ease); color: var(--ink); }
-  .eng__card:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -30px rgba(6,26,46,.35); }
+  .eng__card:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -30px rgba(20,26,85,.35); }
   .eng__card h3 { font-size: 28px; margin: 22px 0 12px; }
-  .eng__card p { color: #34475a; }
+  .eng__card p { color: var(--grey); }
 
   /* ---------- MARQUEE (CSS pur) ---------- */
   .marq { border-block: 1px solid var(--line); padding: 26px 0; overflow: hidden; background: #fff; }
@@ -395,8 +419,8 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   @keyframes marq { to { transform: translateX(-50%); } }
 
   /* ---------- REJOIGNEZ-NOUS ---------- */
-  .join { background: var(--blue); color: #fff; padding: clamp(90px, 12vw, 170px) 0; position: relative; overflow: hidden; }
-  .join::after { content: ''; position: absolute; right: -10vw; top: -20vw; width: 50vw; height: 50vw; border-radius: 50%; border: 2px solid rgba(255,255,255,.25); }
+  .join { background: var(--blue); color: var(--night); padding: clamp(90px, 12vw, 170px) 0; position: relative; overflow: hidden; }
+  .join::after { content: ''; position: absolute; right: -10vw; top: -20vw; width: 50vw; height: 50vw; border-radius: 50%; border: 2px solid rgba(30,39,120,.25); }
   .join__in { position: relative; z-index: 1; text-align: center; display: grid; justify-items: center; }
   .join h2 { font-size: clamp(54px, 9vw, 150px); }
   .join p { max-width: 54ch; margin: 24px 0 40px; font-size: 19px; color: var(--night); font-weight: 500; }
@@ -422,20 +446,20 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   /* ================= IMMERSIF ================= */
   /* Préchargeur */
   .pre { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; pointer-events: none; }
-  .pre__panel { position: absolute; left: 0; right: 0; height: 50.5%; background: var(--blue); }
-  .pre__panel--a { top: 0; } .pre__panel--b { bottom: 0; background: #0090d2; }
+  .pre__panel { position: absolute; left: 0; right: 0; height: 50.5%; background: var(--night); }
+  .pre__panel--a { top: 0; } .pre__panel--b { bottom: 0; background: var(--night-deep); }
   .pre__in { position: relative; display: grid; justify-items: center; gap: 14px; color: #fff; }
   .pre__in img { width: 200px; height: auto; }
-  .pre__motto { font: 700 28px var(--f-hand); color: var(--night); }
+  .pre__motto { font: 700 28px var(--f-hand); color: #fff; }
   .pre__count { font: 800 14px var(--f-text); letter-spacing: .2em; font-variant-numeric: tabular-nums; }
   .no-pre .pre { display: none; }
   /* Curseur personnalisé (souris uniquement) */
   .cur { position: fixed; left: 0; top: 0; z-index: 150; pointer-events: none; display: none; }
   .has-cursor .cur { display: block; }
   .cur__dot { position: absolute; width: 8px; height: 8px; margin: -4px; border-radius: 50%; background: var(--pop); }
-  .cur__ring { position: absolute; width: 42px; height: 42px; margin: -21px; border-radius: 50%; border: 1.5px solid rgba(255,91,31,.8); display: grid; place-items: center; transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .35s; mix-blend-mode: normal; }
+  .cur__ring { position: absolute; width: 42px; height: 42px; margin: -21px; border-radius: 50%; border: 1.5px solid rgba(255,106,0,.8); display: grid; place-items: center; transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .35s; mix-blend-mode: normal; }
   .cur__ring em { font: 700 13px var(--f-text); font-style: normal; color: var(--ink); opacity: 0; transition: opacity .2s; }
-  .cur.is-link .cur__ring { width: 64px; height: 64px; margin: -32px; background: rgba(255,91,31,.15); }
+  .cur.is-link .cur__ring { width: 64px; height: 64px; margin: -32px; background: rgba(255,106,0,.15); }
   .cur.is-label .cur__ring { width: 104px; height: 104px; margin: -52px; background: var(--pop); border-color: var(--pop); }
   .cur.is-label .cur__ring em { opacity: 1; }
   .cur.is-label .cur__dot { opacity: 0; }
@@ -463,8 +487,8 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   @media (max-width: 960px) {
     .hd__nav, .hd__cta { display: none; }
     .hd__burger { display: block; }
-    .hd.is-open { background: var(--blue); }
-    .hd.is-open .hd__nav { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 4px; background: var(--blue); padding: 10px var(--pad) 26px; }
+    .hd.is-open { background: var(--night); }
+    .hd.is-open .hd__nav { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 4px; background: var(--night); padding: 10px var(--pad) 26px; }
     .hd.is-open .hd__nav a { font-size: 22px; padding: 10px 0; }
     .stats__grid { grid-template-columns: repeat(2, 1fr); row-gap: 34px; }
     .hand--stat { display: none; }

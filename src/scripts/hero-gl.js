@@ -49,7 +49,7 @@ const frag = /* glsl */ `
     col.b = texture2D(uTex, cuv - vec2(shift, 0.)).b;
 
     // Fondu vers le bleu nuit de la charte en sortie de hero
-    vec3 night = vec3(.024, .102, .18);
+    vec3 night = vec3(.118, .153, .471);  // #1e2778
     col = mix(col, night, smoothstep(.15, 1., uScroll) * .85);
     gl_FragColor = vec4(col, 1.);
   }
