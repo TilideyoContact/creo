@@ -1,0 +1,33 @@
+---
+import '@fontsource-variable/bricolage-grotesque';
+import '@fontsource-variable/figtree';
+import '@fontsource/caveat/700.css';
+import '../styles/global.css';
+const { title, description } = Astro.props;
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Groupe CréO',
+  url: 'https://www.groupecreo.com',
+  foundingDate: '1992',
+  slogan: 'Je crois, je crée',
+  address: { '@type': 'PostalAddress', addressLocality: 'Le Lamentin', addressRegion: 'Martinique', addressCountry: 'FR' },
+  sameAs: ['https://www.linkedin.com/company/groupe-cr%C3%A9o'],
+};
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#009ce3" />
+    <meta name="robots" content="noindex" /><!-- brouillon : à retirer à la mise en ligne -->
+    <link rel="preload" as="image" href="img/hero-poster.webp" fetchpriority="high" />
+    <script type="application/ld+json" set:html={JSON.stringify(org)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

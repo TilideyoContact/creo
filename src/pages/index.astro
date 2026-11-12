@@ -1,0 +1,484 @@
+---
+import Base from '../layouts/Base.astro';
+import { territoires, project } from '../data/territoires';
+
+const arrow = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const siege = project(-61.0, 14.6);
+const pins = territoires.map((t) => ({ ...t, ...project(t.lon, t.lat) }));
+
+const poles = [
+  {
+    id: 'distribution', num: '01', titre: 'Distribution', accent: 'var(--pop)', img: 'img/distribution.webp',
+    alt: 'Une employée range des fruits et légumes locaux dans un magasin en Martinique',
+    texte: 'Du hard discount au bio, du club-entrepôt au drive : six enseignes alimentaires qui servent les familles des Antilles, de Guyane et de La Réunion au quotidien.',
+    enseignes: ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 'Thiriet', 'Naturalia'],
+  },
+  {
+    id: 'logistique', num: '02', titre: 'Logistique', accent: 'var(--lagoon)', img: 'img/logistique.webp',
+    alt: 'Un cariste déplace une palette dans un entrepôt ouvert sur le port',
+    texte: "Transit, entreposage, transport : nos équipes font arriver les marchandises jusqu'aux rayons, malgré l'éloignement et les contraintes de l'insularité.",
+    enseignes: ['Log Services', 'Trans Log', 'Presta Log', 'Calypso Overseas'],
+  },
+  {
+    id: 'recrutement', num: '03', titre: 'Recrutement & intérim', accent: 'var(--sun)', img: 'img/recrutement.webp',
+    alt: 'Une candidate échange avec une consultante dans une agence de recrutement',
+    texte: 'Des agences et cabinets sur cinq territoires pour mettre en relation entreprises et talents, du premier emploi aux postes de direction.',
+    enseignes: ['Randstad', 'Randstad Search', 'Axion', 'Alpha Conseil'],
+  },
+];
+const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 'Thiriet', 'Naturalia', 'Log Services', 'Trans Log', 'Presta Log', 'Calypso Overseas', 'Randstad', 'Axion', 'Alpha Conseil'];
+---
+<Base
+  title="Groupe CréO | Distribution, logistique, recrutement en Outre-mer"
+  description="Fondé en Martinique en 1992, le Groupe CréO réunit 1 000 collaborateurs autour de la distribution, de la logistique et du recrutement, sur 7 territoires."
+>
+  <a class="skip" href="#contenu">Aller au contenu</a>
+
+  <!-- Préchargeur : rideau qui s'ouvre sur la vidéo -->
+  <div class="pre" data-pre aria-hidden="true">
+    <div class="pre__panel pre__panel--a"></div>
+    <div class="pre__panel pre__panel--b"></div>
+    <div class="pre__in">
+      <img src="img/logo-creo-blanc.png" alt="" width="200" height="70" />
+      <span class="pre__motto">Je crois, je crée.</span>
+      <span class="pre__count" data-pre-count>0</span>
+    </div>
+  </div>
+  <div class="cur" data-cur aria-hidden="true"><span class="cur__dot"></span><span class="cur__ring"><em data-cur-label></em></span></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ================= HEADER ================= -->
+  <header class="hd" data-hd>
+    <div class="hd__in wrap">
+      <a href="#" class="hd__logo" aria-label="Groupe CréO, accueil">
+        <img src="img/logo-creo-blanc.png" alt="Groupe CréO" width="150" height="52" />
+      </a>
+      <nav class="hd__nav" aria-label="Navigation principale">
+        <a href="#histoire">Qui sommes-nous ?</a>
+        <a href="#activites">Nos activités</a>
+        <a href="#engagements">Nos engagements</a>
+      </nav>
+      <a href="#rejoindre" class="btn btn--pop hd__cta" data-magnetic>Rejoignez-nous !</a>
+      <button class="hd__burger" aria-label="Ouvrir le menu" aria-expanded="false" data-burger><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <!-- ================= HERO ================= -->
+    <section class="hero" data-hero>
+      <div class="hero__media" data-hero-media>
+        <video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="img/hero-poster.webp" aria-hidden="true" data-hero-video>
+          <source src="video/yole.mp4" type="video/mp4" />
+        </video>
+        <div class="hero__shade"></div>
+      </div>
+      <div class="hero__content wrap">
+        <h1 class="hero__title" data-split>Un groupe des Outre-mer, dans le même bateau depuis 1992</h1>
+        <p class="hero__lead" data-fade>Distribution, logistique, recrutement et intérim. Né en Martinique, le Groupe CréO réunit aujourd'hui 1&nbsp;000 collaborateurs sur 7 territoires.</p>
+        <div class="hero__ctas" data-fade>
+          <a href="#activites" class="btn btn--pop" data-magnetic>Découvrir nos activités <Fragment set:html={arrow} /></a>
+          <a href="#rejoindre" class="btn btn--ghost">Nous rejoindre</a>
+        </div>
+      </div>
+      <a href="#histoire" class="hero__scroll" aria-label="Faire défiler"><span></span></a>
+    </section>
+
+    <!-- ================= CHIFFRES ================= -->
+    <section class="stats" aria-label="Le groupe en chiffres">
+      <div class="wrap stats__grid">
+        <div class="stat"><strong data-count="1992" data-nosep>1992</strong><span>création en Martinique</span></div>
+        <div class="stat stat--hand">
+          <strong data-count="1000">1 000</strong><span>collaborateurs</span>
+          <span class="hand hand--stat" aria-hidden="true"><svg viewBox="0 0 54 40"><path d="M50 6C34 4 18 12 8 30m0 0 1-11m-1 11 10-4"/></svg>et ça grandit</span>
+        </div>
+        <div class="stat"><strong data-count="7">7</strong><span>territoires</span></div>
+        <div class="stat"><strong data-count="13">13</strong><span>enseignes</span></div>
+      </div>
+    </section>
+
+    <!-- ================= MANIFESTE ================= -->
+    <section class="manif" id="histoire">
+      <div class="wrap manif__grid">
+        <h2 class="manif__motto" aria-label="Je crois, je crée."><span>Je crois,</span><span class="pop">je crée.</span></h2>
+        <div class="manif__text">
+          <p class="manif__big" data-words>Patrick Fabre crée le Groupe CréO au Lamentin en 1992 avec une conviction : une entreprise avance grâce aux femmes et aux hommes qui la font. Trente ans plus tard, cette conviction tient toujours la barre.</p>
+          <p class="manif__small" data-fade>Le groupe a grandi magasin après magasin, agence après agence, en restant attaché à ses territoires. Il a ouvert 20 nouveaux magasins depuis 2019 et vise une place de référence dans chacun de ses métiers.</p>
+          <a href="#implantations" class="btn btn--dark" data-fade>Voir nos implantations <Fragment set:html={arrow} /></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3 PÔLES (scroll horizontal épinglé) ================= -->
+    <section class="poles" id="activites" data-poles>
+      <div class="poles__head wrap">
+        <h2>Trois métiers,<br />un même engagement</h2>
+        <p>Chaque pôle a ses enseignes, ses équipes et son savoir-faire. Ensemble, ils couvrent toute la chaîne, de l'entrepôt au client.</p>
+      </div>
+      <div class="poles__track" data-poles-track>
+        {poles.map((p) => (
+          <article class="pole" style={`--accent:${p.accent}`} id={`pole-${p.id}`} data-cursor="Défiler">
+            <div class="pole__img"><img src={p.img} alt={p.alt} width="896" height="1120" loading="lazy" decoding="async" data-parallax /></div>
+            <div class="pole__body">
+              <span class="pole__num">{p.num}</span>
+              <h3>{p.titre}</h3>
+              <p>{p.texte}</p>
+              <ul class="pole__tags" aria-label={`Enseignes ${p.titre}`}>
+                {p.enseignes.map((e) => <li>{e}</li>)}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- ================= MODULE : CARTE DES IMPLANTATIONS ================= -->
+    <section class="map" id="implantations">
+      <img class="map__bg" src="img/littoral.webp" alt="" width="1344" height="752" loading="lazy" />
+      <div class="wrap map__grid">
+        <div class="map__intro">
+          <h2>Présents sur 7 territoires</h2>
+          <p>Choisissez un territoire pour voir les enseignes et les équipes du groupe sur place.</p>
+          <div class="map__tabs" role="tablist" aria-label="Territoires">
+            {pins.map((t, i) => (
+              <button role="tab" class="map__tab" aria-selected={i === 0 ? 'true' : 'false'} data-tab={t.id}>{t.nom}</button>
+            ))}
+          </div>
+          <!-- Carte en verre : affiche la donnée du territoire sélectionné -->
+          <div class="map__card" aria-live="polite" data-card>
+            {pins.map((t, i) => (
+              <div class="map__panel" data-panel={t.id} hidden={i !== 0}>
+                <h3>{t.nom}{t.siege && <span class="badge">Siège</span>}</h3>
+                {t.aCompleter && <p class="map__todo">Activités à détailler avec la direction de la communication.</p>}
+                {[['Distribution', t.distribution, 'var(--pop)'], ['Logistique', t.logistique, 'var(--lagoon)'], ['Recrutement & intérim', t.recrutement, 'var(--sun)']].map(([label, rows, c]) =>
+                  rows && (rows as any[]).length ? (
+                    <div class="map__block" style={`--c:${c}`}>
+                      <h4>{label}</h4>
+                      <ul>{(rows as any[]).map((r) => <li><span>{r.enseigne}</span><b>{r.detail}</b></li>)}</ul>
+                    </div>
+                  ) : null
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="map__stage">
+          <div class="map__globe" data-globe></div>
+          <div class="map__step" data-steps aria-hidden="true">{pins.map((_, i) => <i class={i === 0 ? 'on' : ''}></i>)}</div>
+          <span class="hand hand--map" aria-hidden="true">faites-le tourner<svg viewBox="0 0 54 40"><path d="M4 8c18-2 34 6 42 24m0 0-1-11m1 11-10-5"/></svg></span>
+          <svg class="map__svg" viewBox="0 0 1400 900" role="img" aria-label="Carte schématique des territoires du groupe, reliés à la Martinique">
+            <defs>
+              <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="rgba(255,255,255,.18)" /></pattern>
+            </defs>
+            <rect width="1400" height="900" fill="url(#dots)" />
+            <line x1="0" y1="600" x2="1400" y2="600" class="map__eq" />
+            <text x="16" y="590" class="map__lbl">Équateur</text>
+            {pins.filter((t) => !t.siege).map((t) => {
+              const mx = (siege.x + t.x) / 2, my = Math.min(siege.y, t.y) - 160;
+              return <path class="map__arc" data-arc={t.id} d={`M${siege.x},${siege.y} Q${mx},${my} ${t.x},${t.y}`} />;
+            })}
+            {pins.map((t, i) => (
+              <g class={`map__pin ${i === 0 ? 'is-on' : ''}`} data-pin={t.id} transform={`translate(${t.x},${t.y})`} tabindex="-1">
+                <circle r="26" class="map__halo" />
+                <circle r="9" class="map__dot" />
+                <text y={t.id === 'guadeloupe' || t.id === 'belgique' ? -22 : 34} text-anchor="middle" class="map__name">{t.nom}</text>
+              </g>
+            ))}
+          </svg>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ENGAGEMENTS ================= -->
+    <section class="eng" id="engagements">
+      <div class="wrap">
+        <h2 class="eng__title">Nos engagements</h2>
+        <div class="eng__grid">
+          <article class="eng__card" data-fade style="--accent:var(--pop)">
+            <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><path class="a" d="M6 10h5l4 18h18l4-12H14"/><circle class="b" cx="18" cy="35" r="3"/><circle class="b" cx="31" cy="35" r="3"/></svg>
+            <h3>Pour nos clients</h3>
+            <p>En 2024, Leader Price devient <strong>Pli Bel Price</strong>, une enseigne 100&nbsp;% locale, avec six marques créées aux côtés des industriels de Martinique.</p>
+          </article>
+          <article class="eng__card" data-fade style="--accent:var(--sun)">
+            <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><circle class="a" cx="16" cy="15" r="6"/><path class="a" d="M5 36c1-7 5-11 11-11s10 4 11 11"/><circle class="b" cx="31" cy="17" r="5"/><path class="a" d="M28 26c6 0 10 4 11 10"/></svg>
+            <h3>Pour nos collaborateurs</h3>
+            <p>1&nbsp;000 personnes, des parcours qui commencent en magasin, en entrepôt ou en agence, et qui peuvent évoluer d'un métier à l'autre au sein du groupe.</p>
+          </article>
+          <article class="eng__card" data-fade style="--accent:var(--lagoon)">
+            <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><path class="a" d="M22 6v26M22 8c8 4 12 12 12 22H22"/><path class="b" d="M22 12c-6 4-9 10-9 18h9z"/><path class="a" d="M6 36c4 3 8 3 12 0s8-3 12 0 8 3 10 1"/></svg>
+            <h3>Pour nos territoires</h3>
+            <p>Partenaire de la yole Pli Bel Price sur le Tour des Yoles de Martinique, le groupe soutient un patrimoine qui lui ressemble : un équipage, un même cap.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MARQUEE ENSEIGNES ================= -->
+    <section class="marq" aria-label="Nos enseignes">
+      <div class="marq__row">
+        {[0, 1].map((k) => (
+          <ul class="marq__list" aria-hidden={k === 1 ? 'true' : undefined}>
+            {marquee.map((m) => <li>{m}<span class="marq__sep" aria-hidden="true"></span></li>)}
+          </ul>
+        ))}
+      </div>
+    </section>
+
+    <!-- ================= REJOIGNEZ-NOUS ================= -->
+    <section class="join" id="rejoindre">
+      <div class="wrap join__in">
+        <h2 data-split>Embarquez avec nous</h2>
+        <p>Magasins, entrepôts, agences, fonctions support : le groupe recrute en Martinique, en Guadeloupe, en Guyane, à La Réunion et à Mayotte.</p>
+        <div class="join__cta">
+          <a href="#" class="btn btn--pop btn--xl" data-magnetic>Voir nos offres d'emploi <Fragment set:html={arrow} /></a>
+          <span class="hand hand--join" aria-hidden="true"><svg viewBox="0 0 54 40"><path d="M50 30C38 34 20 30 10 12m0 0 0 11m0-11 10 4"/></svg>5 territoires recrutent</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ft">
+    <div class="wrap ft__grid">
+      <div>
+        <img src="img/logo-creo-blanc.png" alt="Groupe CréO" width="150" height="52" loading="lazy" />
+        <p class="ft__motto">Je crois, je crée.</p>
+      </div>
+      <nav aria-label="Pied de page">
+        <h4>Le groupe</h4>
+        <a href="#histoire">Notre histoire</a><a href="#implantations">Nos implantations</a><a href="#activites">Nos activités</a>
+      </nav>
+      <nav aria-label="Engagements">
+        <h4>Engagements</h4>
+        <a href="#engagements">Pour nos clients</a><a href="#engagements">Pour nos collaborateurs</a><a href="#engagements">Pour nos territoires</a>
+      </nav>
+      <div>
+        <h4>Siège</h4>
+        <p>Le Lamentin, Martinique</p>
+        <a href="https://www.linkedin.com/company/groupe-cr%C3%A9o" rel="noopener" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+    <div class="wrap ft__legal"><span>© 2026 Groupe CréO</span><a href="#">Mentions légales</a><a href="#">Politique de confidentialité</a></div>
+  </footer>
+
+  <script>
+    import '../scripts/motion.js';
+  </script>
+</Base>
+
+<style is:global>
+  .skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--pop); color: var(--ink); padding: 10px 16px; border-radius: 10px; font-weight: 700; }
+  .skip:focus { top: 12px; }
+
+  /* ---------- HEADER : transparent sur la vidéo, bleu marque au scroll ---------- */
+  .hd { position: fixed; inset: 0 0 auto; z-index: 50; transition: background .4s var(--ease), transform .4s var(--ease), box-shadow .4s; }
+  .hd__in { display: flex; align-items: center; gap: 32px; height: 84px; transition: height .4s var(--ease); }
+  .hd__logo img { width: 132px; height: auto; transition: width .4s var(--ease); }
+  .hd__nav { display: flex; gap: 30px; margin-left: auto; }
+  .hd__nav a { color: #fff; text-decoration: none; font-weight: 600; position: relative; padding: 6px 0; }
+  .hd__nav a::after { content: ''; position: absolute; left: 50%; right: 50%; bottom: 0; height: 2px; background: var(--pop); transition: left .35s var(--ease), right .35s var(--ease); }
+  .hd__nav a:hover::after { left: 0; right: 0; }
+  .hd__cta { --h: 46px; }
+  .hd.is-solid .hd__nav a, .hd.is-open .hd__nav a { color: var(--night); }
+  .hd.is-solid { background: var(--blue); box-shadow: 0 10px 30px -18px rgba(6, 26, 46, .6); }
+  .hd.is-solid .hd__in { height: 68px; }
+  .hd.is-solid .hd__logo img { width: 112px; }
+  .hd.is-hidden { transform: translateY(-100%); }
+  .hd__burger { display: none; margin-left: auto; width: 46px; height: 46px; border-radius: 50%; border: 2px solid #fff; background: transparent; }
+  .hd__burger span { display: block; width: 18px; height: 2px; background: #fff; margin: 4px auto; transition: transform .3s; }
+
+  /* ---------- HERO ---------- */
+  .hero { position: relative; min-height: 100svh; display: grid; align-items: end; color: #fff; overflow: hidden; background: var(--night); }
+  .hero__media { position: absolute; inset: 0; }
+  .hero__video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+  .hero__shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,26,46,.55), rgba(6,26,46,0) 60%), linear-gradient(180deg, rgba(6,26,46,.45) 0%, rgba(6,26,46,0) 30%, rgba(6,26,46,.25) 55%, rgba(6,26,46,.85) 100%); }
+  .hero__content { position: relative; padding-bottom: clamp(80px, 12vh, 130px); padding-top: 110px; }
+  .hero__title { font-size: clamp(40px, 6.4vw, 98px); font-weight: 750; max-width: 15ch; }
+  .hero__title .line { overflow: hidden; padding-bottom: .06em; }
+  .hero__lead { max-width: 52ch; font-size: clamp(17px, 1.4vw, 20px); margin-top: 26px; color: rgba(255,255,255,.92); }
+  .hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
+  .hero__scroll { position: absolute; left: 50%; bottom: 26px; width: 28px; height: 46px; border: 2px solid rgba(255,255,255,.7); border-radius: 20px; transform: translateX(-50%); }
+  .hero__scroll span { position: absolute; left: 50%; top: 8px; width: 4px; height: 9px; margin-left: -2px; border-radius: 2px; background: #fff; animation: wheel 1.6s var(--ease) infinite; }
+  @keyframes wheel { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
+
+  /* ---------- CHIFFRES ---------- */
+  .stats { background: var(--blue); color: #fff; padding: 46px 0; }
+  .stats__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .stat { position: relative; border-left: 2px solid rgba(255,255,255,.35); padding-left: 20px; }
+  .stat strong { display: block; font: 800 clamp(40px, 5vw, 72px)/1 var(--f-display); font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+  .stat span { font-weight: 650; color: var(--night); }  /* texte courant sombre sur bleu : AA */
+  .stat--hand strong { color: #fff; }
+  .hand--stat { right: -6px; top: -34px; color: #fff; }
+
+  /* ---------- MANIFESTE ---------- */
+  .manif { padding: clamp(90px, 14vw, 180px) 0; }
+  .manif__grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(30px, 6vw, 100px); align-items: start; }
+  .manif__motto { font-size: clamp(64px, 10vw, 170px); font-weight: 800; color: var(--blue-ink); display: grid; position: sticky; top: 110px; }
+  .manif__motto .pop { color: var(--ink); background: linear-gradient(transparent 62%, var(--pop) 62% 88%, transparent 88%) no-repeat 0 0 / 100% 100%; width: fit-content; }
+  .manif__big { font: 600 clamp(24px, 2.6vw, 38px)/1.25 var(--f-display); letter-spacing: -.01em; }
+  .manif__big .w { color: rgba(10,26,43,.16); transition: color .2s; }
+  .manif__small { margin: 32px 0; max-width: 56ch; color: #34475a; }
+
+  /* ---------- PÔLES ---------- */
+  .poles { background: var(--night); color: #fff; padding: clamp(70px, 8vh, 110px) 0 0; overflow: hidden; }
+  .poles__head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 40px; }
+  .poles__head h2 { font-size: clamp(40px, 4.6vw, 68px); }
+  .poles__head p { color: rgba(255,255,255,.78); max-width: 46ch; }
+  .poles__track { display: flex; gap: 32px; padding: 0 var(--pad) clamp(80px, 10vw, 130px); width: max-content; }
+  .pole { width: min(78vw, 1040px); display: grid; grid-template-columns: .9fr 1fr; gap: 0; background: #0c2742; border-radius: 28px; overflow: hidden; flex: none; }
+  .pole { height: clamp(420px, 60vh, 620px); }
+  .pole__img { overflow: hidden; height: 100%; }
+  .pole__img img { width: 100%; height: 115%; object-fit: cover; }
+  .pole__body { padding: clamp(28px, 4vw, 60px); display: flex; flex-direction: column; justify-content: flex-end; position: relative; }
+  .pole__num { position: absolute; top: clamp(20px, 3vw, 40px); right: clamp(24px, 3vw, 44px); font: 800 clamp(70px, 9vw, 140px)/1 var(--f-display); color: transparent; -webkit-text-stroke: 2px var(--accent); opacity: .9; }
+  .pole h3 { font-size: clamp(34px, 3.8vw, 56px); margin-bottom: 18px; }
+  .pole p { color: rgba(255,255,255,.82); max-width: 44ch; }
+  .pole__tags { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .pole__tags li { padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--accent); font-weight: 600; font-size: 15px; }
+
+  /* ---------- CARTE ---------- */
+  .map { position: relative; background: var(--night); color: #fff; padding: clamp(80px, 10vh, 120px) 0; min-height: 100vh; display: flex; align-items: center; overflow: hidden; isolation: isolate; }
+  .map__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .35; z-index: -2; }
+  .map::before { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(80% 70% at 30% 40%, rgba(0,156,227,.55), rgba(6,26,46,.92) 70%); }
+  .map__grid { display: grid; grid-template-columns: .85fr 1.5fr; gap: 50px; align-items: center; }
+  .map__intro h2 { font-size: clamp(38px, 4.6vw, 68px); margin-bottom: 18px; }
+  .map__intro p { color: rgba(255,255,255,.85); }
+  .map__tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  .map__tab { font: 600 15px var(--f-text); color: #fff; background: rgba(255,255,255,.08); border: 1.5px solid rgba(255,255,255,.3); border-radius: 999px; padding: 10px 16px; min-height: 44px; cursor: pointer; transition: background .3s, color .3s, border-color .3s; }
+  .map__tab[aria-selected='true'] { background: var(--pop); border-color: var(--pop); color: var(--ink); }
+  .map__stage { position: relative; }
+  .map__svg { width: 100%; height: auto; }
+  .map__eq { stroke: rgba(255,255,255,.25); stroke-dasharray: 2 8; }
+  .map__lbl { fill: rgba(255,255,255,.5); font: 600 20px var(--f-text); }
+  .map__arc { fill: none; stroke: rgba(255,255,255,.35); stroke-width: 2; }
+  .map__arc.is-on { stroke: var(--pop); stroke-width: 3; }
+  .map__pin { cursor: pointer; }
+  .map__dot { fill: #fff; transition: fill .3s; }
+  .map__halo { fill: rgba(255,255,255,.12); transform-origin: center; transform-box: fill-box; }
+  .map__pin.is-on .map__dot { fill: var(--pop); }
+  .map__pin.is-on .map__halo { fill: rgba(255,91,31,.3); animation: ping 1.8s var(--ease) infinite; }
+  @keyframes ping { 0% { transform: scale(.6); opacity: 1; } 100% { transform: scale(2.2); opacity: 0; } }
+  .map__name { fill: #fff; font: 700 24px var(--f-text); paint-order: stroke; stroke: rgba(6,26,46,.75); stroke-width: 6px; }
+  /* Verre : uniquement ici, sur la donnée vivante du territoire */
+  .map__card { margin-top: 28px; padding: 24px 26px; border-radius: 22px;
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35);
+    -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+    box-shadow: 0 30px 60px -30px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.4); }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .map__card { background: rgba(6,26,46,.92); } }
+  .map__card h3 { font-size: 30px; display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .badge { font: 700 12px var(--f-text); background: var(--pop); color: var(--ink); padding: 4px 10px; border-radius: 999px; text-transform: uppercase; letter-spacing: .06em; }
+  .map__block { margin-top: 12px; }
+  .map__block h4 { font: 700 13px var(--f-text); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
+  .map__block h4::before { content: ''; width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
+  .map__block ul { list-style: none; margin: 0; padding: 0; }
+  .map__block li { display: flex; justify-content: space-between; gap: 12px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,.14); font-size: 15px; }
+  .map__block b { font-variant-numeric: tabular-nums; }
+  .map__todo { color: rgba(255,255,255,.85); font-size: 15px; }
+  .hand--map { left: 6%; top: 2%; color: var(--sun); }
+
+  /* ---------- ENGAGEMENTS ---------- */
+  .eng { padding: clamp(90px, 12vw, 160px) 0; }
+  .eng__title { font-size: clamp(40px, 5.4vw, 80px); margin-bottom: 50px; }
+  .eng__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .eng__card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 34px; transition: transform .45s var(--ease), box-shadow .45s var(--ease); color: var(--ink); }
+  .eng__card:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -30px rgba(6,26,46,.35); }
+  .eng__card h3 { font-size: 28px; margin: 22px 0 12px; }
+  .eng__card p { color: #34475a; }
+
+  /* ---------- MARQUEE (CSS pur) ---------- */
+  .marq { border-block: 1px solid var(--line); padding: 26px 0; overflow: hidden; background: #fff; }
+  .marq__row { display: flex; width: max-content; animation: marq 38s linear infinite; }
+  .marq:hover .marq__row { animation-play-state: paused; }
+  .marq__list { display: flex; list-style: none; margin: 0; padding: 0; }
+  .marq__list li { display: flex; align-items: center; font: 700 clamp(26px, 3vw, 44px)/1 var(--f-display); color: var(--ink); white-space: nowrap; }
+  .marq__sep { width: 14px; height: 14px; border-radius: 50%; background: var(--blue); margin: 0 34px; }
+  @keyframes marq { to { transform: translateX(-50%); } }
+
+  /* ---------- REJOIGNEZ-NOUS ---------- */
+  .join { background: var(--blue); color: #fff; padding: clamp(90px, 12vw, 170px) 0; position: relative; overflow: hidden; }
+  .join::after { content: ''; position: absolute; right: -10vw; top: -20vw; width: 50vw; height: 50vw; border-radius: 50%; border: 2px solid rgba(255,255,255,.25); }
+  .join__in { position: relative; z-index: 1; text-align: center; display: grid; justify-items: center; }
+  .join h2 { font-size: clamp(54px, 9vw, 150px); }
+  .join p { max-width: 54ch; margin: 24px 0 40px; font-size: 19px; color: var(--night); font-weight: 500; }
+  .join__cta { position: relative; }
+  .btn--xl { --h: 64px; font-size: 18px; padding: 0 34px; }
+  .hand--join { left: calc(100% + 10px); top: 18px; color: var(--night); }
+
+  /* ---------- FOOTER ---------- */
+  .ft { background: var(--night); color: #fff; padding: 80px 0 30px; }
+  .ft__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+  .ft h4 { font: 700 13px var(--f-text); text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.7); margin: 0 0 14px; }
+  .ft nav a, .ft a { display: block; color: #fff; text-decoration: none; padding: 4px 0; }
+  .ft nav a:hover { color: var(--pop); }
+  .ft__motto { font: 700 26px var(--f-display); margin-top: 18px; }
+  .ft__legal { display: flex; gap: 24px; margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.15); font-size: 14px; color: rgba(255,255,255,.7); }
+  .ft__legal a { display: inline; color: inherit; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .poles__track { flex-direction: column; width: auto; }
+    .pole { width: 100%; }
+  }
+
+  /* ================= IMMERSIF ================= */
+  /* Préchargeur */
+  .pre { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; pointer-events: none; }
+  .pre__panel { position: absolute; left: 0; right: 0; height: 50.5%; background: var(--blue); }
+  .pre__panel--a { top: 0; } .pre__panel--b { bottom: 0; background: #0090d2; }
+  .pre__in { position: relative; display: grid; justify-items: center; gap: 14px; color: #fff; }
+  .pre__in img { width: 200px; height: auto; }
+  .pre__motto { font: 700 28px var(--f-hand); color: var(--night); }
+  .pre__count { font: 800 14px var(--f-text); letter-spacing: .2em; font-variant-numeric: tabular-nums; }
+  .no-pre .pre { display: none; }
+  /* Curseur personnalisé (souris uniquement) */
+  .cur { position: fixed; left: 0; top: 0; z-index: 150; pointer-events: none; display: none; }
+  .has-cursor .cur { display: block; }
+  .cur__dot { position: absolute; width: 8px; height: 8px; margin: -4px; border-radius: 50%; background: var(--pop); }
+  .cur__ring { position: absolute; width: 42px; height: 42px; margin: -21px; border-radius: 50%; border: 1.5px solid rgba(255,91,31,.8); display: grid; place-items: center; transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .35s; mix-blend-mode: normal; }
+  .cur__ring em { font: 700 13px var(--f-text); font-style: normal; color: var(--ink); opacity: 0; transition: opacity .2s; }
+  .cur.is-link .cur__ring { width: 64px; height: 64px; margin: -32px; background: rgba(255,91,31,.15); }
+  .cur.is-label .cur__ring { width: 104px; height: 104px; margin: -52px; background: var(--pop); border-color: var(--pop); }
+  .cur.is-label .cur__ring em { opacity: 1; }
+  .cur.is-label .cur__dot { opacity: 0; }
+  /* Grain argentique très léger sur toute la page */
+  .grain { position: fixed; inset: -50%; z-index: 120; pointer-events: none; opacity: .06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 1s steps(6) infinite; }
+  @keyframes grain { 0%{transform:translate(0,0)} 20%{transform:translate(-4%,3%)} 40%{transform:translate(3%,-5%)} 60%{transform:translate(-2%,6%)} 80%{transform:translate(5%,2%)} 100%{transform:translate(0,0)} }
+  /* Hero WebGL */
+  .hero__gl { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
+  .is-gl .hero__video { opacity: 0; }
+  /* Globe */
+  .map__globe { width: 100%; aspect-ratio: 1; max-height: 78vh; margin-inline: auto; cursor: grab; touch-action: pan-y; }
+  .map__globe:active { cursor: grabbing; }
+  .map__globe canvas { width: 100% !important; height: 100% !important; }
+  .has-globe .map__svg { display: none; }
+  .map:not(.has-globe) .map__globe { display: none; }
+  .map__step { position: absolute; right: 0; top: 50%; display: grid; gap: 10px; transform: translateY(-50%); }
+  .map__step i { width: 4px; height: 22px; border-radius: 4px; background: rgba(255,255,255,.25); transition: background .3s, height .3s; }
+  .map__step i.on { background: var(--pop); height: 40px; }
+  @media (prefers-reduced-motion: reduce) { .grain { animation: none; } }
+  @media (max-width: 960px) { .map__step { display: none; } }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 960px) {
+    .hd__nav, .hd__cta { display: none; }
+    .hd__burger { display: block; }
+    .hd.is-open { background: var(--blue); }
+    .hd.is-open .hd__nav { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 4px; background: var(--blue); padding: 10px var(--pad) 26px; }
+    .hd.is-open .hd__nav a { font-size: 22px; padding: 10px 0; }
+    .stats__grid { grid-template-columns: repeat(2, 1fr); row-gap: 34px; }
+    .hand--stat { display: none; }
+    .manif__grid, .poles__head, .map__grid { grid-template-columns: 1fr; }
+    .manif__motto { position: static; }
+    .poles__track { flex-direction: column; width: auto; }
+    .pole { width: 100%; grid-template-columns: 1fr; }
+    .pole { height: auto; }
+    .pole__img { aspect-ratio: 4 / 3; height: auto; }
+    .pole__num { position: static; font-size: 64px; margin-bottom: 8px; }
+    .map__intro { display: contents; } .map__intro h2 { order: 1; } .map__intro > p { order: 2; } .map__stage { order: 3; } .map__tabs { order: 4; } .map__card { order: 5; margin-top: 0; } .map__stage { position: static; } .map__grid { gap: 22px; } .map__name { font-size: 34px; }
+    .hand--map { display: none; }
+    .eng__grid { grid-template-columns: 1fr; }
+    .hand--join { position: static; transform: rotate(-4deg); margin-top: 16px; justify-content: center; }
+    .ft__grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

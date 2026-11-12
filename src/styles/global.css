@@ -1,0 +1,75 @@
+/* ==========================================================
+   Groupe CréO : système UI (tokens)
+   --blue  : bleu de marque relevé sur le site (#009CE3)
+   --pop   : orange voile de yole, couleur d'action (< 10 % de surface)
+   ========================================================== */
+:root {
+  --blue: #009ce3;
+  --blue-ink: #006ea3;      /* bleu lisible en texte sur fond clair (AA) */
+  --night: #061a2e;         /* secondaire sombre, texte blanc */
+  --ink: #0a1a2b;
+  --bg: #f5f9fc;
+  --pop: #ff5b1f;           /* orange voile : CTA + 1 ou 2 accents */
+  --lagoon: #00b3a7;        /* secondaire : logistique */
+  --sun: #ffc23d;           /* secondaire : recrutement */
+  --line: rgba(10, 26, 43, .12);
+
+  --f-display: 'Bricolage Grotesque Variable', 'Arial Black', sans-serif;
+  --f-text: 'Figtree Variable', system-ui, sans-serif;
+  --f-hand: 'Caveat', cursive;
+
+  --r: 20px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --pad: clamp(20px, 5vw, 72px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--f-text); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img, video, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1; margin: 0; letter-spacing: -.02em; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--pop); outline-offset: 3px; border-radius: 6px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: min(1280px, 100% - 2 * var(--pad)); margin-inline: auto; }
+
+/* ---------- Boutons ---------- */
+.btn {
+  --h: 54px;
+  display: inline-flex; align-items: center; gap: .6em; height: var(--h); padding: 0 26px;
+  border-radius: 999px; font: 700 16px/1 var(--f-text); text-decoration: none; cursor: pointer;
+  border: 2px solid transparent; transition: transform .35s var(--ease), background .3s, color .3s;
+  will-change: transform;
+}
+.btn--pop { background: var(--pop); color: var(--ink); }            /* aplat, jamais de dégradé */
+.btn--pop:hover { background: #ff7442; }
+.btn--ghost { border-color: currentColor; color: #fff; background: transparent; }
+.btn--ghost:hover { background: #fff; color: var(--ink); }
+.btn--dark { border-color: var(--ink); color: var(--ink); }
+.btn--dark:hover { background: var(--ink); color: #fff; }
+.btn svg { width: 18px; height: 18px; transition: transform .35s var(--ease); }
+.btn:hover svg { transform: translateX(4px); }
+
+/* ---------- Annotation manuscrite (3 max sur la page) ---------- */
+.hand {
+  position: absolute; font: 700 26px/1 var(--f-hand); color: var(--pop);
+  display: flex; align-items: center; gap: 6px; transform: rotate(-6deg); pointer-events: none; white-space: nowrap;
+}
+.hand svg { width: 54px; height: 40px; overflow: visible; }
+.hand path { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; }
+
+/* ---------- Icônes bicolores : trait encre + détail pop/secondaire ---------- */
+.ico { width: 44px; height: 44px; }
+.ico .a { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ico .b { fill: var(--accent, var(--pop)); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
