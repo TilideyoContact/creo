@@ -38,7 +38,7 @@ import{S as e,b as t,f as n,i as r,l as i,t as a,v as o,w as s,y as c}from"./thr
     col.b = texture2D(uTex, cuv - vec2(shift, 0.)).b;
 
     // Fondu vers le bleu nuit de la charte en sortie de hero
-    vec3 night = vec3(.024, .102, .18);
+    vec3 night = vec3(.118, .153, .471);  // #1e2778
     col = mix(col, night, smoothstep(.15, 1., uScroll) * .85);
     gl_FragColor = vec4(col, 1.);
   }
