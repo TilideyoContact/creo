@@ -171,6 +171,7 @@ function run() {
         onLeave: () => skewTo(0), onLeaveBack: () => skewTo(0),
       },
     });
+    ScrollTrigger.addEventListener('scrollEnd', () => skewTo(0)); // revient droit dès que le scroll s'arrête
     $$('.pole').forEach((pole) => {
       const img = $('img', pole);
       gsap.fromTo($('.pole__img', pole), { clipPath: 'inset(0 100% 0 0)' }, {

@@ -26,6 +26,14 @@ const poles = [
     enseignes: ['Randstad', 'Randstad Search', 'Axion', 'Alpha Conseil'],
   },
 ];
+// Vrais logos (sources officielles). À compléter avec les fichiers fournis par Créo :
+// Pli Bel Price, Caraïbe Price, Méga Stock, Axion, Alpha Conseil, Log Services, Trans Log, Presta Log, Calypso Overseas.
+const logos = [
+  { src: 'img/logos/123click.png', alt: '123 Click', w: 261, h: 106, cls: 'mid' },
+  { src: 'img/logos/thiriet.png', alt: 'Thiriet', w: 693, h: 360, cls: 'tall' },
+  { src: 'img/logos/naturalia.png', alt: 'Naturalia', w: 308, h: 57 },
+  { src: 'img/logos/randstad.svg', alt: 'Randstad', w: 205, h: 31 },
+];
 const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 'Thiriet', 'Naturalia', 'Log Services', 'Trans Log', 'Presta Log', 'Calypso Overseas', 'Randstad', 'Axion', 'Alpha Conseil'];
 ---
 <Base
@@ -51,7 +59,8 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   <header class="hd" data-hd>
     <div class="hd__in wrap">
       <a href="#" class="hd__logo" aria-label="Groupe CréO, accueil">
-        <img src="img/logo-creo-blanc.png" alt="Groupe CréO" width="150" height="52" />
+        <img class="logo--w" src="img/logo-creo-blanc.png" alt="Groupe CréO" width="150" height="52" />
+        <img class="logo--b" src="img/logo-creo-bleu.png" alt="" aria-hidden="true" width="150" height="52" />
       </a>
       <nav class="hd__nav" aria-label="Navigation principale">
         <a href="#histoire">Qui sommes-nous ?</a>
@@ -80,11 +89,23 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
           <a href="#rejoindre" class="btn btn--ghost">Nous rejoindre</a>
         </div>
       </div>
-      <a href="#histoire" class="hero__scroll" aria-label="Faire défiler"><span></span></a>
+      <div class="hero__logos" aria-label="Quelques enseignes du groupe">
+        <span class="hero__logos-lbl">Nos enseignes</span>
+        <div class="logos">
+          <div class="logos__track">
+            {[0, 1, 2].map((k) => (
+              <ul aria-hidden={k > 0 ? 'true' : undefined}>
+                {logos.map((l) => <li class={l.cls}><img src={l.src} alt={k > 0 ? '' : l.alt} width={l.w} height={l.h} loading="eager" decoding="async" /></li>)}
+              </ul>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ================= CHIFFRES ================= -->
     <section class="stats" aria-label="Le groupe en chiffres">
+      <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap stats__grid">
         <div class="stat"><strong data-count="1992" data-nosep>1992</strong><span>création en Martinique</span></div>
         <div class="stat stat--hand">
@@ -98,6 +119,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
 
     <!-- ================= MANIFESTE ================= -->
     <section class="manif" id="histoire">
+      <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap manif__grid">
         <h2 class="manif__motto" aria-label="Je crois, je crée."><span>Je crois,</span><span class="pop">je crée.</span></h2>
         <div class="manif__text">
@@ -126,6 +148,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
 
     <!-- ================= 3 PÔLES (scroll horizontal épinglé) ================= -->
     <section class="poles" id="activites" data-poles>
+      <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="poles__head wrap">
         <h2>Trois métiers,<br />un même engagement</h2>
         <p>Chaque pôle a ses enseignes, ses équipes et son savoir-faire. Ensemble, ils couvrent toute la chaîne, de l'entrepôt au client.</p>
@@ -149,6 +172,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
 
     <!-- ================= MODULE : CARTE DES IMPLANTATIONS ================= -->
     <section class="map" id="implantations">
+      <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
       <img class="map__bg" src="img/littoral.webp" alt="" width="1344" height="752" loading="lazy" />
       <div class="wrap map__grid">
         <div class="map__intro">
@@ -208,6 +232,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
 
     <!-- ================= ENGAGEMENTS ================= -->
     <section class="eng" id="engagements">
+      <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap">
         <h2 class="eng__title">Nos engagements</h2>
         <div class="eng__grid">
@@ -483,6 +508,98 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   @media (prefers-reduced-motion: reduce) { .grain { animation: none; } }
   @media (max-width: 960px) { .map__step { display: none; } }
 
+  /* ================= MODE CLAIR + VERRE (v4) ================= */
+  /* Halos de couleur animés : donnent de la vie aux fonds clairs et font ressortir le verre */
+  .aurora { position: absolute; inset: 0; overflow: hidden; z-index: 0; pointer-events: none; }
+  .aurora i { position: absolute; width: 46vmax; height: 46vmax; border-radius: 50%; filter: blur(80px); opacity: .55; animation: drift 22s ease-in-out infinite alternate; }
+  .aurora i:nth-child(1) { background: #01afec; left: -12vmax; top: -10vmax; }
+  .aurora i:nth-child(2) { background: #ff6a00; right: -16vmax; top: 30%; opacity: .2; animation-duration: 28s; }
+  .aurora i:nth-child(3) { background: #00b3a7; left: 30%; bottom: -22vmax; opacity: .35; animation-duration: 34s; }
+  @keyframes drift { to { transform: translate3d(6vmax, 4vmax, 0) scale(1.12); } }
+  .stats, .manif, .poles, .map, .eng { position: relative; isolation: isolate; }
+  .stats > .wrap, .manif > .wrap, .poles > *:not(.aurora), .map > .wrap, .eng > .wrap { position: relative; z-index: 1; }
+  /* Recette du verre */
+  .glass { background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.75);
+    -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%);
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 24px 60px -28px rgba(30,39,120,.35); }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .glass, .stat, .pole, .eng__card, .map__card, .hd.is-solid, .hero__logos { background: rgba(255,255,255,.94) !important; } }
+
+  /* En-tête : verre clair au scroll, logo bleu */
+  .hd__logo { position: relative; display: block; }
+  .hd__logo .logo--b { position: absolute; inset: 0; opacity: 0; transition: opacity .3s; }
+  .hd.is-solid { background: rgba(255,255,255,.62); -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%); border-bottom: 1px solid rgba(255,255,255,.7); box-shadow: 0 10px 40px -24px rgba(30,39,120,.45); }
+  .hd.is-solid .logo--w { opacity: 0; } .hd.is-solid .logo--b { opacity: 1; }
+  .hd.is-solid .hd__nav a { color: var(--night); }
+  .hd.is-solid .hd__burger { border-color: var(--night); } .hd.is-solid .hd__burger span { background: var(--night); }
+
+  /* Hero : bandeau de logos en verre, bords fondus */
+  .hero__content { padding-bottom: clamp(150px, 20vh, 210px); }
+  .hero__logos { position: absolute; left: var(--pad); right: var(--pad); bottom: 22px; z-index: 2; display: flex; align-items: center; gap: 18px;
+    padding: 12px 12px 12px 24px; border-radius: 22px; background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.85);
+    -webkit-backdrop-filter: blur(16px) saturate(160%); backdrop-filter: blur(16px) saturate(160%); }
+  .hero__logos-lbl { font: 700 12px var(--f-text); letter-spacing: .1em; text-transform: uppercase; color: var(--night); white-space: nowrap; }
+  .logos { flex: 1; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+  .logos__track { display: flex; width: max-content; animation: marq 26s linear infinite; }
+  .hero__logos:hover .logos__track { animation-play-state: paused; }
+  .logos ul { display: flex; align-items: center; gap: 64px; list-style: none; margin: 0; padding: 0 32px; }
+  .logos li { height: 40px; display: grid; place-items: center; }
+  .logos img { height: 30px; width: auto; }
+  .logos li.mid img { height: 40px; }
+  .logos li.tall img { height: 44px; }
+
+  /* Chiffres : cartes de verre sur halos */
+  .stats { background: var(--bg); color: var(--night); padding: 60px 0; overflow: hidden; }
+  .stats__grid { gap: 18px; }
+  .stat { border-left: 0; padding: 26px 26px 22px; border-radius: 22px; background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.75);
+    -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%); box-shadow: 0 24px 60px -30px rgba(30,39,120,.35); }
+  .stat strong { color: var(--night); }
+  .stat::after { content: ''; display: block; width: 44px; height: 6px; border-radius: 6px; margin-top: 14px; background: var(--c, var(--blue)); }
+  .stat:nth-child(1) { --c: var(--blue); } .stat:nth-child(2) { --c: var(--pop); } .stat:nth-child(3) { --c: var(--lagoon); } .stat:nth-child(4) { --c: var(--sun); }
+  .stat span { color: var(--grey); }
+  .hand--stat { color: var(--pop); }
+
+  .manif { overflow: hidden; }
+  .manif .aurora i:nth-child(2) { opacity: .2; }
+
+  /* Pôles : fond clair, cartes de verre blanches */
+  .poles { background: var(--bg); color: var(--ink); }
+  .poles__head p { color: var(--grey); }
+  .pole { background: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.8);
+    -webkit-backdrop-filter: blur(20px) saturate(170%); backdrop-filter: blur(20px) saturate(170%); box-shadow: 0 40px 80px -40px rgba(30,39,120,.45); }
+  .pole p { color: #3d3a39; }
+  .pole h3 { color: var(--night); }
+  .pole__tags li { border: 0; background: color-mix(in srgb, var(--accent) 16%, white); color: var(--ink); }
+  .pole__num { -webkit-text-stroke: 2px var(--accent); }
+
+  /* Carte : ciel clair, globe bleu nuit, verre blanc */
+  .map { background: linear-gradient(180deg, #e3f5fd 0%, var(--bg) 100%); color: var(--ink); }
+  .map::before { display: none; }
+  .map__bg { opacity: .12; }
+  .map__intro h2 { color: var(--night); }
+  .map__intro p { color: var(--grey); }
+  .map__tab { color: var(--night); background: rgba(255,255,255,.55); border-color: rgba(255,255,255,.85); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+  .map__card { background: rgba(255,255,255,.6); border-color: rgba(255,255,255,.85); color: var(--ink); box-shadow: 0 30px 60px -30px rgba(30,39,120,.4), inset 0 1px 0 rgba(255,255,255,.9); }
+  .map__card h3 { color: var(--night); }
+  .map__block li { border-bottom-color: rgba(30,39,120,.12); }
+  .map__todo { color: var(--grey); }
+  .map__step i { background: rgba(30,39,120,.18); }
+  .hand--map { color: var(--pop); }
+  .map__name { fill: var(--night); stroke: rgba(255,255,255,.85); }
+  .map__dot { fill: var(--night); }
+  .map__arc { stroke: rgba(30,39,120,.35); }
+  .map__eq { stroke: rgba(30,39,120,.25); } .map__lbl { fill: rgba(30,39,120,.5); }
+
+  /* Engagements : verre */
+  .eng { background: var(--bg); overflow: hidden; }
+  .eng__card { background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.8); -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%); }
+  .eng__card h3 { color: var(--night); }
+  .eng__card::before { content: ''; display: block; height: 4px; width: 48px; border-radius: 4px; background: var(--accent); margin-bottom: 18px; }
+
+  /* Boutons : typo d'affichage pour plus de caractère */
+  .btn { font-family: var(--f-display); font-weight: 700; letter-spacing: -.01em; font-size: 17px; }
+  .btn--pop { box-shadow: 0 10px 30px -10px rgba(255,106,0,.6); }
+  .btn--pop:hover { box-shadow: 0 16px 40px -10px rgba(255,106,0,.75); }
+
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 960px) {
     .hd__nav, .hd__cta { display: none; }
@@ -504,5 +621,31 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
     .eng__grid { grid-template-columns: 1fr; }
     .hand--join { position: static; transform: rotate(-4deg); margin-top: 16px; justify-content: center; }
     .ft__grid { grid-template-columns: 1fr 1fr; }
+    .hero__content { padding-bottom: 150px; }
+    .hero__logos { left: 14px; right: 14px; bottom: 14px; padding: 10px 8px 10px 16px; gap: 10px; }
+    .hero__logos-lbl { display: none; }
+    .logos ul { gap: 40px; padding: 0 20px; }
+    .logos img { height: 22px; } .logos li.mid img { height: 32px; } .logos li.tall img { height: 36px; }
+    .stats { padding: 40px 0; }
+    .stats__grid { gap: 12px; }
+    .stat { padding: 18px 16px 16px; }
+    .stat strong { font-size: 40px; }
+    .crew__lines p { font-size: clamp(34px, 10vw, 56px); }
+    .poles { padding-bottom: 40px; }
+    .poles__track { padding-bottom: 20px; }
+    .pole__body { padding: 24px; }
+    .pole h3 { font-size: 30px; }
+    .map { min-height: auto; }
+    .map__globe { max-height: 60vh; }
+    .eng__card { padding: 26px; }
+    .join h2 { font-size: clamp(44px, 13vw, 80px); }
+    .btn--xl { --h: 58px; font-size: 16px; padding: 0 24px; }
+    .ft__legal { flex-wrap: wrap; gap: 12px 20px; }
+    .aurora i { filter: blur(60px); }
+  }
+  @media (max-width: 420px) {
+    .hero__title { font-size: 38px; }
+    .hero__ctas .btn { width: 100%; justify-content: center; }
+    .manif__motto { font-size: 58px; }
   }
 </style>

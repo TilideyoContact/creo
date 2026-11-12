@@ -50,10 +50,10 @@ export async function initGlobe({ canvasWrap, territoires, gsap, onPick }) {
   const atmo = new THREE.Mesh(
     new THREE.SphereGeometry(1.12, 64, 64),
     new THREE.ShaderMaterial({
-      transparent: true, side: THREE.BackSide, depthWrite: false, blending: THREE.AdditiveBlending,
+      transparent: true, side: THREE.BackSide, depthWrite: false,
       uniforms: { c: { value: new THREE.Color(0x01afec) } },
       vertexShader: 'varying vec3 n; void main(){ n = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }',
-      fragmentShader: 'uniform vec3 c; varying vec3 n; void main(){ float i = pow(.72 - dot(n, vec3(0,0,1.)), 3.); gl_FragColor = vec4(c, 1.) * i * .85; }',
+      fragmentShader: 'uniform vec3 c; varying vec3 n; void main(){ float i = pow(.72 - dot(n, vec3(0,0,1.)), 3.); gl_FragColor = vec4(c, clamp(i * 1.4, 0., .8)); }',
     }),
   );
   scene.add(atmo);
