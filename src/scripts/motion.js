@@ -210,7 +210,17 @@ function run() {
 
   /* ---------- Engagements ---------- */
   gsap.from('.wall__tile', { y: 30, opacity: 0, duration: .7, ease: 'power3.out', stagger: .04, scrollTrigger: { trigger: '.wall__grid', start: 'top 85%' } });
-  gsap.from('.eng__card', { y: 80, rotate: 2, opacity: 0, duration: 1, ease: 'power3.out', stagger: .12, scrollTrigger: { trigger: '.eng__grid', start: 'top 85%' } });
+  // Engagements : chaque carte recule légèrement quand la suivante vient se poser dessus
+  const stk = $$('[data-stk]');
+  stk.forEach((card, i) => {
+    const next = stk[i + 1];
+    if (!next) return;
+    gsap.to(card, {
+      scale: 0.93, '--dim': 0.18, ease: 'none',
+      scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 30%', scrub: true },
+    });
+  });
+  gsap.from('[data-stk] .stk__txt > *', { y: 30, opacity: 0, duration: .8, ease: 'power3.out', stagger: .08, scrollTrigger: { trigger: '.stk', start: 'top 80%' } });
   // Bandeau final : cercle qui grossit au scroll
   gsap.fromTo('.join', { clipPath: 'circle(20% at 50% 60%)' }, { clipPath: 'circle(120% at 50% 60%)', ease: 'none', scrollTrigger: { trigger: '.join', start: 'top bottom', end: 'top 30%', scrub: true } });
 

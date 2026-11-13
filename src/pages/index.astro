@@ -234,22 +234,24 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
       <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wrap">
         <h2 class="eng__title">Nos engagements</h2>
-        <div class="eng__grid">
-          <article class="eng__card" style="--accent:var(--pop)">
-            <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><path class="a" d="M6 10h5l4 18h18l4-12H14"/><circle class="b" cx="18" cy="35" r="3"/><circle class="b" cx="31" cy="35" r="3"/></svg>
-            <h3>Pour nos clients</h3>
-            <p>En 2024, Leader Price devient <strong>Pli Bel Price</strong>, une enseigne 100&nbsp;% locale, avec six marques créées aux côtés des industriels de Martinique.</p>
-          </article>
-          <article class="eng__card" style="--accent:var(--sun)">
-            <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><circle class="a" cx="16" cy="15" r="6"/><path class="a" d="M5 36c1-7 5-11 11-11s10 4 11 11"/><circle class="b" cx="31" cy="17" r="5"/><path class="a" d="M28 26c6 0 10 4 11 10"/></svg>
-            <h3>Pour nos collaborateurs</h3>
-            <p>1&nbsp;000 personnes, des parcours qui commencent en magasin, en entrepôt ou en agence, et qui peuvent évoluer d'un métier à l'autre au sein du groupe.</p>
-          </article>
-          <article class="eng__card" style="--accent:var(--lagoon)">
-            <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><path class="a" d="M22 6v26M22 8c8 4 12 12 12 22H22"/><path class="b" d="M22 12c-6 4-9 10-9 18h9z"/><path class="a" d="M6 36c4 3 8 3 12 0s8-3 12 0 8 3 10 1"/></svg>
-            <h3>Pour nos territoires</h3>
-            <p>Partenaire de la yole Pli Bel Price sur le Tour des Yoles de Martinique, le groupe soutient un patrimoine qui lui ressemble : un équipage, un même cap.</p>
-          </article>
+        <div class="stk">
+          {[
+            { n: '01', t: 'Pour nos clients', a: 'var(--pop)', img: 'img/distribution.webp', alt: 'Rayon de fruits et légumes locaux', icon: 'cart',
+              p: 'En 2024, Leader Price devient <strong>Pli Bel Price</strong>, une enseigne 100&nbsp;% locale, avec six marques créées aux côtés des industriels de Martinique.' },
+            { n: '02', t: 'Pour nos collaborateurs', a: 'var(--sun)', img: 'img/recrutement.webp', alt: 'Entretien dans une agence de recrutement', icon: 'team',
+              p: '1&nbsp;000 personnes, des parcours qui commencent en magasin, en entrepôt ou en agence, et qui peuvent évoluer d\'un métier à l\'autre au sein du groupe.' },
+            { n: '03', t: 'Pour nos territoires', a: 'var(--lagoon)', img: 'img/crew-poster.webp', alt: 'Équipage de yole en course', icon: 'sail',
+              p: 'Partenaire de la yole Pli Bel Price sur le Tour des Yoles de Martinique, le groupe soutient un patrimoine qui lui ressemble : un équipage, un même cap.' },
+          ].map((c, i) => (
+            <article class="stk__card" style={`--accent:${c.a};--i:${i}`} data-stk>
+              <div class="stk__txt">
+                <span class="stk__num">{c.n}</span>
+                <h3>{c.t}</h3>
+                <p set:html={c.p} />
+              </div>
+              <div class="stk__img"><img src={c.img} alt={c.alt} width="1120" height="1400" loading="lazy" decoding="async" /></div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -754,4 +756,30 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
     .ft__grid { gap: 28px 20px; }
   }
 
+
+  /* ---------- Engagements : cartes qui s'empilent au scroll ---------- */
+  .stk { display: grid; gap: 0; padding-bottom: 20px; }
+  .stk__card { position: sticky; top: calc(110px + var(--i) * 22px); display: grid; grid-template-columns: 1fr 1fr; min-height: 380px; margin-bottom: 48px;
+    background: #fff; border-radius: 28px; overflow: hidden; box-shadow: 0 30px 70px -40px rgba(30,39,120,.45), 0 0 0 1px rgba(30,39,120,.06);
+    transform-origin: 50% 0; will-change: transform; }
+  .stk__card:last-child { margin-bottom: 0; }
+  .stk__txt { padding: clamp(28px, 4vw, 56px); display: flex; flex-direction: column; justify-content: center; gap: 14px; position: relative; }
+  .stk__txt::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--accent); }
+  .stk__num { font: 800 clamp(56px, 7vw, 96px)/.9 var(--f-display); color: transparent; -webkit-text-stroke: 2px var(--accent); }
+  .stk__card h3 { font-size: clamp(26px, 2.6vw, 38px); color: var(--night); }
+  .stk__card p { color: var(--grey); max-width: 44ch; font-size: 17px; }
+  .stk__card p strong { color: var(--ink); }
+  .stk__img { position: relative; overflow: hidden; }
+  .stk__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+  .stk__card:hover .stk__img img { transform: scale(1.04); }
+  .stk__card::after { content: ''; position: absolute; inset: 0; background: var(--night); opacity: var(--dim, 0); pointer-events: none; border-radius: inherit; }
+  @media (max-width: 760px) {
+    .stk__card { grid-template-columns: 1fr; top: calc(76px + var(--i) * 14px); min-height: 0; margin-bottom: 28px; border-radius: 22px; }
+    .stk__img { order: -1; height: 190px; }
+    .stk__txt { padding: 24px 22px 26px; gap: 10px; }
+    .stk__txt::before { width: 100%; height: 5px; bottom: auto; }
+    .stk__num { font-size: 48px; }
+    .stk__card p { font-size: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .stk__card { position: relative; top: 0; } }
 </style>
