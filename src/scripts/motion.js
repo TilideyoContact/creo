@@ -199,7 +199,7 @@ function run() {
       ScrollTrigger.refresh();
     }),
   });
-  if (desktop) {
+  if (desktop && window.innerHeight >= 700) {
     ScrollTrigger.create({
       trigger: mapSec, start: 'top top', end: () => '+=' + window.innerHeight * 0.6 * ids.length,
       pin: true, anticipatePin: 1,
