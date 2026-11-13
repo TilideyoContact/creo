@@ -607,7 +607,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   .map__eq { stroke: rgba(30,39,120,.25); } .map__lbl { fill: rgba(30,39,120,.5); }
 
   /* Engagements : verre */
-  .eng { background: var(--bg); overflow: hidden; }
+  .eng { background: var(--bg); overflow: clip; }
   .eng__card { background: rgba(255,255,255,.55); border: 1px solid rgba(255,255,255,.8); -webkit-backdrop-filter: blur(18px) saturate(170%); backdrop-filter: blur(18px) saturate(170%); }
   .eng__card h3 { color: var(--night); }
   .eng__card::before { content: ''; display: block; height: 4px; width: 48px; border-radius: 4px; background: var(--accent); margin-bottom: 18px; }
@@ -716,6 +716,28 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
     .map__intro > p { display: none; }
     .map__tab { min-height: 36px; padding: 6px 12px; font-size: 14px; }
     .map__globe { max-height: 70vh; }
+  }
+  /* Desktop v7 : chaque section épinglée tient dans la hauteur d'écran */
+  @media (min-width: 961px) {
+    .manif__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+    .manif__motto { font-size: clamp(64px, 7.4vw, 136px); line-height: .95; }
+    .manif__motto span { white-space: nowrap; }
+    .crew__lines p { font-size: clamp(40px, min(6.2vw, 9.5vh), 108px); }
+    .poles { height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 84px 0 28px; }
+    .poles__head { margin-bottom: clamp(18px, 3.5vh, 40px); }
+    .poles__head h2 { font-size: clamp(36px, min(4.2vw, 7vh), 64px); }
+    .poles__track { padding-bottom: 0; align-items: stretch; }
+    .pole { height: clamp(320px, calc(100svh - 84px - 28px - clamp(18px, 3.5vh, 40px) - min(4.2vw, 7vh) * 3.3), 600px); width: min(74vw, 1040px, calc((100svh - 220px) * 1.9)); }
+    .pole__body { padding: clamp(24px, 3.4vh, 52px) clamp(24px, 3vw, 52px); }
+    .pole__num { font-size: clamp(60px, min(8vw, 13vh), 130px); }
+    .pole h3 { font-size: clamp(30px, min(3.6vw, 6vh), 54px); margin-bottom: 12px; }
+    .pole__tags { margin-top: clamp(14px, 2.4vh, 28px); }
+    .stk__card { max-height: calc(100svh - 150px); }
+  }
+  @media (min-width: 961px) and (max-height: 760px) {
+    .pole p { font-size: 15px; }
+    .pole__tags li { padding: 5px 10px; font-size: 13px; }
+    .poles__head p { font-size: 15px; }
   }
   /* Tablette : cartes métiers en deux colonnes, engagements resserrés */
   @media (min-width: 641px) and (max-width: 960px) {
