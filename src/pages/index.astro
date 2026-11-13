@@ -29,7 +29,7 @@ const poles = [
 ];
 // Vrais logos (sources officielles). À compléter avec les fichiers fournis par Créo :
 // Pli Bel Price, Caraïbe Price, Méga Stock, Axion, Alpha Conseil, Log Services, Trans Log, Presta Log, Calypso Overseas.
-const heroLogos = ['Pli Bel Price', '123 Click', 'Thiriet', 'Naturalia', 'Randstad'].map((n) => ({ alt: n, ...LOGOS[n] }));
+const heroLogos = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 'Thiriet', 'Naturalia', 'Log Services', 'Trans Log', 'Presta Log', 'Calypso Overseas', 'Randstad', 'Axion', 'Alpha Conseil'].map((n) => ({ alt: n, ...LOGOS[n] }));
 const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 'Thiriet', 'Naturalia', 'Log Services', 'Trans Log', 'Presta Log', 'Calypso Overseas', 'Randstad', 'Axion', 'Alpha Conseil'];
 ---
 <Base
@@ -555,11 +555,11 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   .logos { flex: 1; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
   .logos__track { display: flex; width: max-content; animation: marq 26s linear infinite; }
   .hero__logos:hover .logos__track { animation-play-state: paused; }
-  .logos ul { display: flex; align-items: center; gap: 64px; list-style: none; margin: 0; padding: 0 32px; }
-  .logos li { height: 40px; display: grid; place-items: center; }
+  .logos ul { display: flex; align-items: center; gap: 28px; list-style: none; margin: 0; padding: 0 32px; }
+  .logos li { height: 58px; display: grid; place-items: center; }
   .logos img { height: 30px; width: auto; }
   .logos li.large img { height: 32px; }
-  .logos li.carre img { height: 46px; }
+  .logos li.carre img { height: 54px; width: 54px; border-radius: 12px; box-shadow: 0 2px 10px -4px rgba(30,39,120,.3); }
   .logos li.tall img { height: 44px; }
 
   /* Chiffres : cartes de verre sur halos */
@@ -618,10 +618,10 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   /* Logos devant chaque enseigne (carte) */
   .ens { display: inline-flex; align-items: center; gap: 10px; }
   .ens__logo { width: 34px; height: 22px; object-fit: contain; }
-  .ens__logo.carre { height: 26px; }
+  .ens__logo.carre { width: 30px; height: 30px; border-radius: 7px; box-shadow: 0 1px 4px rgba(30,39,120,.18); }
   .ens__ph { width: 34px; height: 22px; border-radius: 6px; border: 1px dashed rgba(30,39,120,.35); display: grid; place-items: center; font: 700 10px var(--f-text); font-style: normal; color: var(--night); background: rgba(255,255,255,.5); }
   .pole__tags li { display: inline-flex; align-items: center; gap: 8px; }
-  .pole__tags img { height: 18px; width: auto; max-width: 54px; object-fit: contain; }
+  .pole__tags img { height: 24px; width: 24px; border-radius: 6px; object-fit: contain; background: #fff; }
 
   /* Engagements : espacement resserré */
   .eng { padding: clamp(70px, 8vw, 110px) 0; }
@@ -642,7 +642,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
   .wall__tile:hover { transform: translateY(-4px); box-shadow: 0 18px 30px -18px rgba(30,39,120,.45); }
   .wall__tile { min-width: 0; }
   .wall__tile img { max-width: 78%; height: 40px; width: auto; object-fit: contain; }
-  .wall__tile img.carre { height: 58px; }
+  .wall__tile img.carre { height: 88px; width: 88px; max-width: none; }
   .wall__name { font: 600 12px var(--f-text); color: var(--grey); text-align: center; }
   .wall__tile.is-ph { background: rgba(255,255,255,.45); border: 1px dashed rgba(30,39,120,.25); }
   .wall__ph { display: grid; justify-items: center; gap: 4px; }
@@ -652,7 +652,7 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
     .wall__grid { grid-template-columns: 1fr; }
     .wall__pole ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .wall__pole { padding: 16px; }
-    .wall__tile img { height: 30px; } .wall__tile img.carre { height: 44px; }
+    .wall__tile img.carre { height: 70px; width: 70px; }
   }
   @media (max-width: 520px) { .wall__pole ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
@@ -680,8 +680,8 @@ const marquee = ['Pli Bel Price', 'Caraïbe Price', 'Méga Stock', '123 Click', 
     .hero__content { padding-bottom: 150px; }
     .hero__logos { left: 14px; right: 14px; bottom: 14px; padding: 10px 8px 10px 16px; gap: 10px; }
     .hero__logos-lbl { display: none; }
-    .logos ul { gap: 40px; padding: 0 20px; }
-    .logos li.large img { height: 24px; } .logos li.carre img { height: 38px; }
+    .logos ul { gap: 18px; padding: 0 12px; }
+    .logos li.large img { height: 24px; } .logos li.carre img { height: 44px; width: 44px; }
     .stats { padding: 40px 0; }
     .stats__grid { gap: 12px; }
     .stat { padding: 18px 16px 16px; }
